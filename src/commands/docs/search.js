@@ -18,7 +18,7 @@ class DocsSearch extends TwilioClientCommand {
   }
 
   static args = [
-    {name: 'searchString', description: 'Search String', required: true},
+    {name: 'searchString', description: 'Search String to use inside the twilio documentation.', required: true},
   ];
 
   async run() {
@@ -32,6 +32,6 @@ class DocsSearch extends TwilioClientCommand {
   }
 }
 
-DocsSearch.description = `Launch Docs Search with Search String`;
+DocsSearch.description = `Launch Docs Search with the provided Search String`;
 
 module.exports = DocsSearch

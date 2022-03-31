@@ -4,13 +4,12 @@ const { TwilioCliError } = require('@twilio/cli-core').services.error;
 const { sleep } = require('@twilio/cli-core').services.JSUtils;
 const querystring = require('querystring');
 const open = require('open');
-const { Flags } = require('@oclif/core');
 
-const BASE_URL = 'https://www.twilio.com/docs/';
+const SEARCH_URL = 'https://www.google.com/search?q=site%3Atwilio.com+';
 
 //https://www.twilio.com/docs/search?q=voice Search String
 
-class DocsOpener extends TwilioClientCommand {
+class DocsGoogle extends TwilioClientCommand {
   constructor(argv, config, secureStorage) {
     super(argv, config, secureStorage);
 
@@ -19,28 +18,20 @@ class DocsOpener extends TwilioClientCommand {
   }
 
   static args = [
-    {name: 'product', description: 'Name of product you would like to jump directly into', required: false},
+    {name: 'searchString', description: 'Search String to use when Googling the Twilio site.', required: true},
   ];
 
   async run() {
     await super.run();
 
-    const {args} = this.parse(DocsOpener);
+    const {args} = this.parse(DocsGoogle);
 
     // Open Browser Window to page.
-    const url = BASE_URL;
-
-    if (args.path) {
-      open(url+args.path);
-    } else {
-      open(url+'/all');
-    }
-    
+    const url = SEARCH_URL;
+    open(url+args.searchString);
   }
-
 }
 
-DocsOpener.description = `Open up the docs page, optionally launch a specifc product you'd like to see.`;
+DocsGoogle.description = `Search Twilio's site on Google with the provided Search String`;
 
-
-module.exports = DocsOpener
+module.exports = DocsGoogle

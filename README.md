@@ -14,41 +14,83 @@ Head over to the [twilio-cli documentation](https://www.twilio.com/docs/twilio-c
 # Usage
 
 ```sh-session
-$ twilio --help debugger
+$ twilio --help docs 
+open twilio docs
+
 USAGE
-  $ twilio debugger
-...
+  $ twilio docs:COMMAND
+
+COMMANDS
+  docs:google  Search Twilio's site on Google with the provided Search String
+  docs:open    Open up the docs page, optionally launch a specifc product you'd like to see.
+  docs:search  Launch Docs Search with the provided Search String
 ```
 
 # Commands
 <!-- commands -->
-* [`twilio docs:logs:list`](#twilio-debuggerlogslist)
+* [`twilio docs:open`](#twilio-docsopen)
+* [`twilio docs:search`](#twilio-docssearch)
+* [`twilio docs:google`](#twilio-docsgoogle)
 
-## `twilio debugger:logs:list`
+## `twilio docs:open`
 
-Show a list of log events generated for the account
+Open up the docs page, optionally launch a specifc product you'd like to see.
 
 ```
 USAGE
-  $ twilio debugger:logs:list
+  $ twilio docs:open [PRODUCT]
+
+ARGUMENTS
+  PRODUCT  Name of product you would like to jump directly into
 
 OPTIONS
-  -l=(debug|info|warn|error|none)           [default: info] Level of logging messages.
-  -o=(columns|json|tsv)                     [default: columns] Format of command output.
-  -p, --profile=profile                     Shorthand identifier for your profile.
-  -s, --streaming                           Continuously stream incoming log events
-  --end-date=end-date                       Only show log events on or before this date
-  --log-level=(error|warning|notice|debug)  Only show log events for this log level
+OPTIONAL FLAGS
+  -l=(debug|info|warn|error|none)  [default: info] Level of logging messages.
+  -o=(columns|json|tsv|none)       [default: columns] Format of command output.
+  -p, --profile=profile            Shorthand identifier for your profile.
+  --silent                         Suppress output and logs. This is a shorthand for "-l none -o none".
 
-  --properties=properties                   [default: dateCreated, logLevel, errorCode, alertText] The event properties
-                                            you would like to display (JSON output always shows all properties)
-
-  --start-date=start-date                   Only show log events on or after this date
-
-DESCRIPTION
-  Argg, this is only a subset of the log events and live tailing isn't quite ready! Think this is a killer feature? Let 
-  us know here: https://twil.io/twilio-cli-feedback
 ```
 
-_See code: [src/commands/debugger/logs/list.js](https://github.com/twilio/plugin-debugger/blob/1.1.9/src/commands/debugger/logs/list.js)_
+## `twilio docs:search`
+
+Launch Docs Search with the provided Search String
+```
+USAGE
+  $ twilio docs:search SEARCHSTRING
+
+ARGUMENTS
+  SEARCHSTRING  Search String to use inside the twilio documentation.
+
+OPTIONS
+OPTIONAL FLAGS
+  -l=(debug|info|warn|error|none)  [default: info] Level of logging messages.
+  -o=(columns|json|tsv|none)       [default: columns] Format of command output.
+  -p, --profile=profile            Shorthand identifier for your profile.
+  --silent                         Suppress output and logs. This is a shorthand for "-l none -o none".
+
+```
+
+## `twilio docs:google`
+
+Search Twilio's site on Google with the provided Search String
+
+```
+USAGE
+  $ twilio docs:google SEARCHSTRING
+
+ARGUMENTS
+  SEARCHSTRING  Search String to use when Googling the Twilio site.
+
+OPTIONS
+OPTIONAL FLAGS
+  -l=(debug|info|warn|error|none)  [default: info] Level of logging messages.
+  -o=(columns|json|tsv|none)       [default: columns] Format of command output.
+  -p, --profile=profile            Shorthand identifier for your profile.
+  --silent                         Suppress output and logs. This is a shorthand for "-l none -o none".
+
+MORE INFO
+  https://twilio.com/docs/api/
+```
+
 <!-- commandsstop -->
