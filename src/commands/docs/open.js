@@ -30,10 +30,10 @@ class DocsOpener extends TwilioClientCommand {
     // Open Browser Window to page.
     const url = BASE_URL;
 
-    if (args.path) {
-      open(url+args.path);
+    if (args.product) {
+      open(url+args.product);
     } else {
-      open(url+'/all');
+      open(url+'all');
     }
     
   }
